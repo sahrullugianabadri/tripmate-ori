@@ -1,0 +1,9 @@
+import '../gallery_screen/widgets/gallery_item_widget.dart';import 'controller/gallery_controller.dart';import 'models/gallery_item_model.dart';import 'package:flutter/material.dart';import 'package:tripmate_ori/core/app_export.dart';import 'package:tripmate_ori/widgets/app_bar/appbar_leading_image.dart';import 'package:tripmate_ori/widgets/app_bar/appbar_title.dart';import 'package:tripmate_ori/widgets/app_bar/appbar_trailing_image.dart';import 'package:tripmate_ori/widgets/app_bar/custom_app_bar.dart';class GalleryScreen extends GetWidget<GalleryController> {const GalleryScreen({Key? key}) : super(key: key);
+
+@override Widget build(BuildContext context) { mediaQueryData = MediaQuery.of(context); return SafeArea(child: Scaffold(appBar: _buildAppBar(), body: Padding(padding: EdgeInsets.only(left: 24.h, top: 24.v, right: 24.h), child: Obx(() => GridView.builder(shrinkWrap: true, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(mainAxisExtent: 141.v, crossAxisCount: 2, mainAxisSpacing: 16.h, crossAxisSpacing: 16.h), physics: BouncingScrollPhysics(), itemCount: controller.galleryModelObj.value.galleryItemList.value.length, itemBuilder: (context, index) {GalleryItemModel model = controller.galleryModelObj.value.galleryItemList.value[index]; return GalleryItemWidget(model);}))))); } 
+/// Section Widget
+PreferredSizeWidget _buildAppBar() { return CustomAppBar(leadingWidth: 52.h, leading: AppbarLeadingImage(imagePath: ImageConstant.imgArrowLeft, margin: EdgeInsets.only(left: 24.h, top: 11.v, bottom: 16.v), onTap: () {onTapArrowLeft();}), title: AppbarTitle(text: "msg_gallery_hotel_photos".tr, margin: EdgeInsets.only(left: 16.h)), actions: [AppbarTrailingImage(imagePath: ImageConstant.imgClock, margin: EdgeInsets.fromLTRB(24.h, 11.v, 24.h, 16.v))]); } 
+
+/// Navigates to the previous screen.
+onTapArrowLeft() { Get.back(); } 
+ }

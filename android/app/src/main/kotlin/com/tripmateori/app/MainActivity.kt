@@ -1,0 +1,6 @@
+package com.tripmateori.app
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
